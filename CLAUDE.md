@@ -1,5 +1,68 @@
 # FairHop Mobile — Developer Guide
 
+## Product Strategy & Differentiation
+
+### Problem We're Solving
+Street markets in Amsterdam have irregular schedules and diverse product offerings. Users waste time searching Google Maps or asking locals because:
+- Google doesn't optimize for "show me markets with BOTH clothing AND food"
+- Market schedules are inconsistent (weekly, bi-weekly, monthly, seasonal)
+- No reliable way to know if a market is actually open TODAY
+
+### Our Differentiation
+**FairHop solves this with three core features:**
+
+1. **Product/Category-Based Filtering** (Unique to us)
+   - Filter markets by what they sell (clothing, food, vintage, organic, etc.)
+   - Combine filters: "Show me clothing + food markets"
+   - Users can find exactly what they want without checking each market individually
+   - Google Maps is venue-centric and doesn't support this easily
+
+2. **"Open Today" Feature** (Real pain point solver)
+   - Markets have irregular schedules that change seasonally
+   - Users need to know: Is this market actually open TODAY?
+   - This solves the biggest UX problem with Google Maps for markets
+
+3. **Community-Driven Content** (Lock-in mechanism)
+   - User reviews and ratings specific to each market
+   - Photos showing what's actually being sold
+   - Real-time updates: "It's busy today", "Good deals on vintage"
+   - Crowd-sourced schedule updates if official hours are wrong
+
+### Critical Success Factors
+**Phase 1: Data Completeness (CURRENT PRIORITY)**
+- ⚠️ Without complete, accurate data, differentiation is worthless
+- Must gather EVERY street market in Amsterdam with:
+  - Accurate product/category tags
+  - Verified open hours for each day
+  - Correct schedule type (weekly, bi-weekly, monthly, seasonal)
+- If user searches "flea market, open today" and finds nothing, they assume app is broken (not that there's nothing open)
+
+**Phase 2: Data Accuracy**
+- Real-time updates when markets close or change hours
+- User reports flag incorrect information
+- Regular verification of data accuracy
+
+**Phase 3: Community Growth**
+- User reviews and photos create competitive moat
+- Reviews > generic listings
+- Network effects: more users = better content = more users
+
+### Validation Status
+- ✅ Product differentiation identified (product filtering + open today)
+- ⚠️ Data completeness: incomplete (user search for "flea market" returned nothing)
+- ❓ User demand: needs validation (have we talked to 50+ potential users?)
+- ❌ Product-market fit: not yet validated
+
+### MVP To-Do (Before Heavy Marketing)
+- [ ] Complete data for all Amsterdam markets (>90% coverage)
+- [ ] Verify each market's products/categories are accurate
+- [ ] Test: User can search "category + open today" and get results
+- [ ] Release to 20-30 beta testers
+- [ ] Iterate based on feedback
+- [ ] Only then scale to public launch
+
+---
+
 ## Framework Stack
 - **Expo SDK 54** with Expo Router v6 (file-based routing)
 - **React Native 0.81** with TypeScript ~5.9
