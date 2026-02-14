@@ -20,6 +20,7 @@ export default function TabsLayout() {
         name="map"
         options={{
           title: "Explore",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <Map color={color} size={size} />,
         }}
       />
