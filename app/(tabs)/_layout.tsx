@@ -47,6 +47,15 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="fair/[id]"
+        options={{
+          title: "",
+          headerShown: true,
+          tabBarStyle: { display: "none" },
+          tabBarButton: () => null,
+        }}
+      />
     </Tabs>
   );
 }

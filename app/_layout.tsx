@@ -37,10 +37,6 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="fair/[id]"
-            options={{ headerShown: true, title: "" }}
-          />
         </Stack>
       </AuthProvider>
     </SafeAreaProvider>
