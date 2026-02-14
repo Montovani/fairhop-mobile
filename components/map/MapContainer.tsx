@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { router } from "expo-router";
-import { Star, Clock, ChevronRight, X } from "lucide-react-native";
+import { Star, Clock, ChevronRight, X, Sliders } from "lucide-react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -16,8 +16,9 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useLocation } from "@/hooks/useLocation";
-import { useFairsInRegion } from "@/hooks/useFairsInRegion";
+import { useFairsInRegion, type MapFilters } from "@/hooks/useFairsInRegion";
 import { FairMarker } from "@/components/map/FairMarker";
+import { FilterModal } from "@/components/map/FilterModal";
 import { Colors } from "@/constants/Colors";
 import type { Fair } from "@/types";
 
@@ -30,10 +31,17 @@ const AMSTERDAM_REGION = {
 
 export function MapContainer() {
   const { location, isLoading: locationLoading } = useLocation();
-  const { fairs, isLoading: fairsLoading, error, onRegionChangeComplete } =
-    useFairsInRegion();
+  const [filters, setFilters] = useState<MapFilters | undefined>();
+  const {
+    fairs,
+    allFairs,
+    isLoading: fairsLoading,
+    error,
+    onRegionChangeComplete,
+  } = useFairsInRegion(filters);
 
   const [selectedFair, setSelectedFair] = useState<Fair | null>(null);
+  const [filterModalVisible, setFilterModalVisible] = useState(false);
   const mapRef = useRef<MapView>(null);
 
   const translateY = useSharedValue(300);
@@ -63,6 +71,10 @@ export function MapContainer() {
   const handleMapPress = useCallback(() => {
     if (selectedFair) handleDismissCard();
   }, [selectedFair, handleDismissCard]);
+
+  const handleApplyFilters = useCallback((appliedFilters: MapFilters) => {
+    setFilters(appliedFilters);
+  }, []);
 
   // MVP: always center on Amsterdam regardless of user location
   const initialRegion = AMSTERDAM_REGION;
@@ -99,12 +111,28 @@ export function MapContainer() {
         ))}
       </MapView>
 
+      {/* Filter Button */}
+      <Pressable
+        onPress={() => setFilterModalVisible(true)}
+        className="absolute right-4 top-16 rounded-full bg-surface p-3 shadow-lg border border-border"
+      >
+        <Sliders size={24} color={Colors.primary[500]} />
+      </Pressable>
 
       {error && (
         <View className="absolute left-4 right-4 top-14 rounded-lg bg-red-50 px-4 py-3">
           <Text className="text-center text-sm text-red-600">{error}</Text>
         </View>
       )}
+
+      {/* Filter Modal */}
+      <FilterModal
+        visible={filterModalVisible}
+        onClose={() => setFilterModalVisible(false)}
+        onApply={handleApplyFilters}
+        fairs={allFairs}
+        isLoading={fairsLoading}
+      />
 
       {selectedFair && (
         <Animated.View

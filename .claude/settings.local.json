@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/igu/repos/fairhop-mobile log --oneline -10)",
+      "Bash(git -C /Users/igu/repos/fairhop-mobile show --stat HEAD)",
+      "mcp__ide__getDiagnostics",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
